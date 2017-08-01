@@ -13,7 +13,7 @@
 
 <body>
 <!--引入导航栏-->
-<div th:include="top :: top"></div>
+<div th:include="/common/top :: top"></div>
 
 <div th:if="${not #lists.isEmpty(articles)}">
     <div class="row">

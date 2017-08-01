@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:margin-down="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>首页</title>
+    <link th:href="@{/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/bootstrap/css/bootstrap-theme.css}" rel="stylesheet"/>
+    <link th:href="@{/css/mycss.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<div th:fragment="top">
+    <div class="row">
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false"/>
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="">王宸昊的专栏</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav" id="nv1">
+                        <li class="active" id="firstPage"><a href="">首页</a></li>
+                        <li id="webPage"><a href="">JavaWeb专栏</a></li>
+                        <li id="androidPage"><a href="">Js 专栏</a>
+                        </li>
+                        <li id="rnPage"><a href="">测试专栏</a>
+                        </li>
+                        <li id="ubuntuPage"><a href="">算法专栏</a>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="搜索">/
+                            <span class="input-group-btn"/>
+        <button class="btn btn-default" type="button" >Go!</button>
+      </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--<script>-->
+        <!--var href = location.href;-->
+        <!--var id = href.substring(href.lastIndexOf("/") + 1, href.length);-->
+        <!--if (id=="") {-->
+            <!--id = "firstPage";-->
+        <!--}-->
+        <!--var ids = ["firstPage", "webPage", "androidPage", "rnPage", "ubuntuPage"];-->
+        <!--for (var i = 0; i < ids.length; i++) {-->
+            <!--if (id == ids[i]) {-->
+                <!--$("#" + id).attr("class", "active");-->
+            <!--} else {-->
+                <!--$("#" + ids[i]).removeAttr("class");-->
+            <!--}-->
+        <!--}-->
+    <!--</script>-->
+
+<script href="@{/jquery-3.2.1.min.js}" type="text/javascript"></script>
+<script href="@{/bootstrap/js/bootstrap.js}"></script>
+</div>
+    </body>
+
+</html>

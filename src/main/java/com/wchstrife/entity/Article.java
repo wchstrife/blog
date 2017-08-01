@@ -19,15 +19,15 @@ public class Article {
     private String id;
 
 
-
     @Column(name = "title")
     private String title;
 
     @Column(name = "content")
     private String content;
 
-    @Column(name = "category_id")
-    private Integer categoryId;
+    @ManyToOne
+    private Category category;
+
 
     @Column(name = "summary", columnDefinition = "text")
     private String summary;
@@ -35,16 +35,13 @@ public class Article {
     @Column(name = "date", columnDefinition = "varchar(64)")
     private String date;
 
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
     }
 
     public String getTitle() {
@@ -63,12 +60,12 @@ public class Article {
         this.content = content;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getSummary() {

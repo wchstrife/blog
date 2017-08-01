@@ -28,6 +28,9 @@ public class Category {
         this.displayName = displayName;
     }
 
+    public Category() {
+    }
+
     public String getName() {
         return name;
     }
