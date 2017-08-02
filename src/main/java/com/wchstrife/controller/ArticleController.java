@@ -8,7 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.tautua.markdownpapers.Markdown;
+import org.tautua.markdownpapers.parser.ParseException;
 
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.util.List;
 
 /**
@@ -57,8 +61,27 @@ public class ArticleController {
      */
     @RequestMapping("/detail/{id}")
     public String detail(@PathVariable("id") String id, Model model){
+        System.out.println(id);
         Article article = articleService.getById(id);
+        System.out.println(article.getId());
+        Markdown markdown = new Markdown();
+        try {
+            StringWriter out = new StringWriter();
+            markdown.transform(new StringReader(article.getContent()), out);
+            out.flush();
+            article.setContent(out.toString());
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+        model.addAttribute("article", article);
 
         return "front/detail";
+    }
+
+    @RequestMapping("/detele/{id}")
+    public String delete(@PathVariable("id") String id){
+        articleService.delete(id);
+
+        return "redirect:/";
     }
 }
