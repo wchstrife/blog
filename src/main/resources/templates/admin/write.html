@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>写博客</title>
+
+    <link th:href="@{/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/bootstrap/css/bootstrap-theme.css}" rel="stylesheet"/>
+    <link th:href="@{/editormd/css/editormd.css}" rel="stylesheet"/>
+
+    <script th:href="@{/jquery-3.2.1.min.js}" type="text/javascript"></script>
+    <script th:href="@{/bootstrap/js/bootstrap.js}"></script>
+    <script th:href="@{/editormd/editormd.js}"></script>
+</head>
+<body>
+<div class="container">
+    <form method="post" th:action="@{/admin/save}" th:object="${article}">
+        <table border="1">
+            <tr>
+                <th>标题</th>
+                <th>简介</th>
+                <th>内容</th>
+                <th>时间</th>
+            </tr>
+            <tr>
+                <td><input type="text" th:field="*{title}"/> </td>
+                <td><textarea th:field="*{summary}"/></td>
+                <td><textarea th:field="*{content}"/></td>
+                <td><input type="datetime-local" th:field="*{date}"></td>
+                <td><input type="submit" value="保存"> </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+
+
+</body>
+</html>

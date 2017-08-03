@@ -30,14 +30,11 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav" id="nv1">
-                        <li class="active" id="firstPage"><a href="">首页</a></li>
-                        <li id="webPage"><a href="">JavaWeb专栏</a></li>
-                        <li id="androidPage"><a href="">Js 专栏</a>
-                        </li>
-                        <li id="rnPage"><a href="">测试专栏</a>
-                        </li>
-                        <li id="ubuntuPage"><a href="">算法专栏</a>
-                        </li>
+                        <li class="active" id="firstPage"><a th:href=@{/article/}>首页</a></li>
+                        <li id="javaPage"><a th:href=@{/article/column/Java专栏/javaPage}>Java专栏</a></li>
+                        <li id="springPage"><a th:href="@{/article/column/Spring专栏/springPage}">Spring专栏</a></li>
+                        <li id="jsPage"><a th:href="@{/article/column/Js专栏/jsPage}">Js专栏</a></li>
+                        <li id="algorPage"><a th:href="@{/article/column/算法专栏/algorPage}">算法专栏</a></li>
                     </ul>
                     <form class="navbar-form navbar-right">
                         <div class="input-group">

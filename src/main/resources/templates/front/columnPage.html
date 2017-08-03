@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>首页</title>
+    <link th:href="@{/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/bootstrap/css/bootstrap-theme.css}" rel="stylesheet"/>
+    <link th:href="@{/css/mycss.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<!--引入导航栏-->
+<div th:include="/common/top :: top"></div>
+<div class="container">
+    <div th:each="article:${articles}">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title" th:text="${article.title}"></h3>
+            </div>
+            <div class="panel-body">
+                <h4 th:text="${article.summary}"></h4>
+                <p><a class="btn btn-primary btn-lg" th:href="@{'/article/detail/'+${article.id}}"  role="button">阅读全文</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:href="@{/jquery-3.2.1.min.js}" type="text/javascript"></script>
+<script th:href="@{/bootstrap/js/bootstrap.js}"></script>
+</body>
+</html>
