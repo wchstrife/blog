@@ -1,8 +1,10 @@
 package com.wchstrife.controller;
 
 import com.wchstrife.entity.Article;
+import com.wchstrife.entity.Category;
 import com.wchstrife.entity.User;
 import com.wchstrife.service.ArticleService;
+import com.wchstrife.service.CategoryService;
 import com.wchstrife.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -27,6 +29,8 @@ public class UserController {
     UserService userService;
     @Autowired
     ArticleService articleService;
+    @Autowired
+    CategoryService categoryService;
 
     /**
      * 后台主页
@@ -39,6 +43,10 @@ public class UserController {
         return "admin/index";
     }
 
+    /**
+     * 登录模块
+     * @return
+     */
     @RequestMapping("/login")
     public String login(){
 
@@ -46,7 +54,7 @@ public class UserController {
     }
 
     /**
-     * 登录
+     * 登录验证
      * @param user
      * @param model
      * @return
@@ -57,10 +65,12 @@ public class UserController {
         if(userService.login(user.getUsername(), user.getPassword())){
             session.setAttribute("user", user);
             model.addAttribute("user", user);
+            System.out.println("success");
 
             return "redirect:/admin";
         }else {
             model.addAttribute("error", "用户名或者密码错误");
+            System.out.println("failture");
 
             return "admin/login";
         }
@@ -77,4 +87,32 @@ public class UserController {
 
         return "redirect:/admin";
     }
+
+    @RequestMapping("/write")
+    public String write(Model model){
+        List<Category> categories = categoryService.list();
+        model.addAttribute("categories", categories);
+        model.addAttribute("article", new Article());
+
+        return "admin/write";
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(Article article){
+        //设置种类
+        String name = article.getCategory().getName();
+        Category category = categoryService.fingdByName(name);
+        article.setCategory(category);
+        //设置摘要,取前20个字
+        if(article.getContent().length() > 50){
+            article.setSummary(article.getContent().substring(0, 50));
+        }else {
+            article.setSummary(article.getContent().substring(0, article.getContent().length()));
+        }
+
+        articleService.save(article);
+
+        return "redirect:/admin";
+    }
+
 }
