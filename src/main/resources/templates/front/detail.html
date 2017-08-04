@@ -8,7 +8,6 @@
     <title>首页</title>
     <link th:href="@{/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
     <link th:href="@{/bootstrap/css/bootstrap-theme.css}" rel="stylesheet"/>
-    <link th:href="@{/css/mycss.css}" rel="stylesheet"/>
 </head>
 <body>
 <!--引入导航栏-->
@@ -17,10 +16,10 @@
 <div class="container">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h3 class="panel-title" th:text="${article.title}"></h3>
+            <h3 class="panel-title" th:utext="${article.title}"></h3>
         </div>
         <div class="panel-body">
-            <span th:text="${article.content}"></span>
+            <div th:utext="${article.content}"></div>
         </div>
     </div>
 </div>

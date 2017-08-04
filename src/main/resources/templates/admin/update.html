@@ -11,10 +11,12 @@
     <link th:href="@{/bootstrap/css/bootstrap-theme.css}" rel="stylesheet"/>
     <link th:href="@{/editormd/css/editormd.css}" rel="stylesheet"/>
 
-    <script src="../jquery-3.2.1.min.js" type="text/javascript"></script>
-    <script src="../editormd/editormd.js"></script>
-    <script src="../bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript">
+
+    <script th:src="@{/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/editormd/editormd.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+
+    <script type="text/javascript" th:inline="javascript">
         //    调用编辑器
         var testEditor;
         $(function() {
@@ -22,7 +24,7 @@
                 width   : "1000px",
                 height  : 640,
                 syncScrolling : "single",
-                path    : "../editormd/lib/"
+                path    : [[@{/editormd/lib/}]]
             });
         });
     </script>
@@ -41,6 +43,8 @@
 <body>
 <form method="post" th:action="@{/admin/save}" th:object="${article}">
     <div class="container">
+        <br/>
+        <br/>
         <div class="row">
             <div class="col-lg-6">
                 <div class="input-group">
@@ -48,7 +52,6 @@
 
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false" id="categoryBtn">分类</button>
-
                         <ul class="dropdown-menu">
                             <li th:each="category:${categories}">
                                 <a th:name="${category.name}" th:abbr="${category.displayName}" onclick="selectCategory(this)" th:text="${category.displayName}"></a>
@@ -57,7 +60,7 @@
                     </div>
                     <input name="category" id="cateoryInput" type="hidden" th:field="*{category.name}"/>
                     <input name="id" type="hidden" th:value="${target.id}"/>
-                    <input type="text" class="form-contorl" palceholder="标题" name="title" th:field="*{title}" th:value="target.id"/>
+                    <input th:type="text" class="form-contorl" name="title" th:field="*{title}" th:value="${target.title}"/>
                 </div>
             </div>
         </div>
@@ -66,7 +69,7 @@
     <!--文本标记区-->
     <div id="layout" style="width: 100%;height: 100%">
         <div id="test-editormd">
-            <textarea style="display:none;" name="content" th:field="*{content}"></textarea>
+            <textarea style="display:none;" name="content" th:field="*{content}" th:text="${target.content}"></textarea>
         </div>
     </div>
     <!--提交按钮-->
