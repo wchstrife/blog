@@ -14,4 +14,5 @@ public interface ArticleDao extends JpaRepository<Article, String>{
 
     public List<Article> findAllByCategory_Name(String name);
 
+
 }

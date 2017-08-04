@@ -5,6 +5,7 @@ import com.wchstrife.entity.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -16,12 +17,18 @@ public class ArticleService {
     @Autowired
     private ArticleDao articleDao;
 
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
     public Article getById(String id){
         Article article = articleDao.findOne(id);
 
         return article;
     }
 
+    /**
+     *查询所有列表
+     * @return
+     */
     public List<Article> list(){
         List<Article> articles = articleDao.findAll();
 
@@ -35,5 +42,22 @@ public class ArticleService {
     public List<Article> getArticleByCategoryName(String categoryName){
 
         return articleDao.findAllByCategory_Name(categoryName);
+    }
+
+
+    public void writeBlog(Article article){
+
+    }
+
+    /**
+     * 删除文章
+     * @param id
+     */
+    public void delete(String id){
+        articleDao.delete(id);
+    }
+
+    public void save(Article article){
+        articleDao.save(article);
     }
 }

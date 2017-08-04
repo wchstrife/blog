@@ -103,9 +103,9 @@ public class UserController {
         String name = article.getCategory().getName();
         Category category = categoryService.fingdByName(name);
         article.setCategory(category);
-        //设置摘要,取前20个字
-        if(article.getContent().length() > 50){
-            article.setSummary(article.getContent().substring(0, 50));
+        //设置摘要,取前40个字
+        if(article.getContent().length() > 40){
+            article.setSummary(article.getContent().substring(0, 40));
         }else {
             article.setSummary(article.getContent().substring(0, article.getContent().length()));
         }
@@ -115,4 +115,14 @@ public class UserController {
         return "redirect:/admin";
     }
 
+    @RequestMapping("/update/{id}")
+    public String update(@PathVariable("id") String id, Model model){
+        Article article = articleService.getById(id);
+        model.addAttribute("target", article);
+        List<Category> categories = categoryService.list();
+        model.addAttribute("categories", categories);
+        model.addAttribute("article", new Article());
+
+        return "admin/update";
+    }
 }

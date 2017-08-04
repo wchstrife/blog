@@ -78,10 +78,5 @@ public class ArticleController {
         return "front/detail";
     }
 
-    @RequestMapping("/detele/{id}")
-    public String delete(@PathVariable("id") String id){
-        articleService.delete(id);
 
-        return "redirect:/";
-    }
 }
