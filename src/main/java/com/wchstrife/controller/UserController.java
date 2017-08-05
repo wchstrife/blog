@@ -1,5 +1,6 @@
 package com.wchstrife.controller;
 
+import com.wchstrife.aspect.WebSecurityConfig;
 import com.wchstrife.entity.Article;
 import com.wchstrife.entity.Category;
 import com.wchstrife.entity.User;
@@ -13,8 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -31,6 +38,8 @@ public class UserController {
     ArticleService articleService;
     @Autowired
     CategoryService categoryService;
+
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     /**
      * 后台主页
@@ -59,13 +68,15 @@ public class UserController {
      * @param model
      * @return
      */
+
     @RequestMapping(value = "/dologin", method = RequestMethod.POST)
-    public String doLogin(HttpSession session, User user, Model model){
+    public String doLogin(HttpServletResponse response, User user, Model model){
 
         if(userService.login(user.getUsername(), user.getPassword())){
-            session.setAttribute("user", user);
+            Cookie cookie = new Cookie(WebSecurityConfig.SESSION_KEY, user.toString());
+            response.addCookie(cookie);
             model.addAttribute("user", user);
-            System.out.println("success");
+            System.out.println(cookie.getName());
 
             return "redirect:/admin";
         }else {
@@ -109,7 +120,7 @@ public class UserController {
         }else {
             article.setSummary(article.getContent().substring(0, article.getContent().length()));
         }
-
+        article.setDate(sdf.format(new Date()));
         articleService.save(article);
 
         return "redirect:/admin";
