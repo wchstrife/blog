@@ -26,12 +26,14 @@
                 <td>编号</td>
                 <td>标题</td>
                 <td>摘要</td>
+                <td>发表时间</td>
                 <td style="text-align: center" colspan="2">操作</td>
             </tr>
                 <tr th:each="articles:${articles}">
                     <td th:text="${articles.id}"></td>
                     <td th:text="${articles.title}"></td>
                     <td th:text="${articles.summary}"></td>
+                    <td th:text="${articles.date}"></td>
                     <td><a th:href="@{'/admin/update/'+${articles.id}}">修改</a></td>
                     <td><a th:href="@{'/admin/delete/'+${articles.id}}">删除</a></td>
                 </tr>

@@ -6,7 +6,7 @@ define(function(require){
     
     console.log($, editormd);
                 
-    $.get("./test.md", function(md){
+    $.get("./test.editormd", function(md){
         testEditor = editormd("test-editormd", {
             width: "90%",
             height: 640,
@@ -40,7 +40,7 @@ define(function(require){
         testEditor.hide();
     });
 
-    $("#get-md-btn").bind('click', function(){
+    $("#get-editormd-btn").bind('click', function(){
         alert(testEditor.getMarkdown());
     });
 
