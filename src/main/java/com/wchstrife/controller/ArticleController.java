@@ -34,7 +34,7 @@ public class ArticleController {
     /*
     TODO：分页
      */
-    @RequestMapping("/")
+    @RequestMapping("")
     public String list(Model model){
         List<Article> articles = articleService.list();
         model.addAttribute("articles", articles);
@@ -78,5 +78,12 @@ public class ArticleController {
         return "front/detail";
     }
 
+    @RequestMapping("/search")
+    public String search(String key, Model model){
+        List<Article> articles = articleService.search(key);
+        model.addAttribute("articles", articles);
+
+        return "front/columnPage";
+    }
 
 }
