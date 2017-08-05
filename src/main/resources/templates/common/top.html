@@ -36,11 +36,11 @@
                         <li id="jsPage"><a th:href="@{/article/column/Js专栏/jsPage}">Js专栏</a></li>
                         <li id="algorPage"><a th:href="@{/article/column/算法专栏/algorPage}">算法专栏</a></li>
                     </ul>
-                    <form class="navbar-form navbar-right">
+                    <form class="navbar-form navbar-right" th:action="@{/article/search}">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="搜索">/
-                            <span class="input-group-btn"/>
-        <button class="btn btn-default" type="button" >Go!</button>
+                            <input type="text" class="form-control" placeholder="搜索" name="key"/>
+                            <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Go!</button>
       </span>
                         </div>
                     </form>

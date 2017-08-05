@@ -65,7 +65,7 @@
 
 		exports.fn.htmlEntities = function() {
 			/*
-			var _this       = this; // this == the current instance object of Editor.md
+			var _this       = this; // this == the current instance object of Editor.editormd
 			var lang        = _this.lang;
 			var settings    = _this.settings;
 			var editor      = this.editor;

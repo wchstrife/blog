@@ -45,10 +45,6 @@ public class ArticleService {
     }
 
 
-    public void writeBlog(Article article){
-
-    }
-
     /**
      * 删除文章
      * @param id
@@ -57,7 +53,19 @@ public class ArticleService {
         articleDao.delete(id);
     }
 
+    /**
+     * 保存博客
+     * @param article
+     */
     public void save(Article article){
         articleDao.save(article);
+    }
+
+    /**
+     * 根据标题查找
+     */
+    public List<Article> search(String key){
+
+        return articleDao.findByTitleLike(key);
     }
 }

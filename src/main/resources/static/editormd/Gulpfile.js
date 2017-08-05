@@ -17,7 +17,7 @@ var pkg          = require("./package.json");
 var dateFormat   = require("dateformatter").format;
 var replace      = require("gulp-replace");
 
-pkg.name         = "Editor.md";
+pkg.name         = "Editor.editormd";
 pkg.today        = dateFormat;
 
 var headerComment = ["/*", 
@@ -307,7 +307,7 @@ gulp.task("cm-addon", function() {
 }); 
 /*
 gulp.task("jsdoc", function(){
-    return gulp.src(["./src/editormd.js", "README.md"])
+    return gulp.src(["./src/editormd.js", "README.editormd"])
                .pipe(jsdoc.parser())
                .pipe(jsdoc.generator("./docs/html"));
 });
@@ -319,7 +319,7 @@ gulp.task("jsdoc2md", function() {
                 gutil.log(gutil.colors.red("jsdoc2md failed"), err.message);
             })
             .pipe(rename(function(path) {
-                path.extname = ".md";
+                path.extname = ".editormd";
             }))
             .pipe(gulp.dest("docs/markdown"));
 });

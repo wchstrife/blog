@@ -63,7 +63,7 @@
 
 			if (helpContent.html() === "") 
 			{
-				$.get(path + "help.md", function(text) {
+				$.get(path + "help.editormd", function(text) {
 					var md = exports.$marked(text);
 					helpContent.html(md);
                     
